@@ -33,4 +33,8 @@ public class UsuarioService {
         return user;
     }
 
+    @Transactional(readOnly = true)
+    public List<Usuario> buscarTodos() {
+        return usuarioRepository.findAll();
+    }
 }
