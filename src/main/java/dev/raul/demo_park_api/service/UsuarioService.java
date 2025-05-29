@@ -9,8 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Service
 public class UsuarioService {
-
-
     private final UsuarioRepository usuarioRepository;
 
     @Transactional
