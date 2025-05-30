@@ -2,6 +2,9 @@ package dev.raul.demo_park_api.web.controller;
 
 import dev.raul.demo_park_api.entity.Usuario;
 import dev.raul.demo_park_api.service.UsuarioService;
+import dev.raul.demo_park_api.web.dto.UsuarioCreateDto;
+import dev.raul.demo_park_api.web.dto.UsuarioResponseDto;
+import dev.raul.demo_park_api.web.dto.mapper.UsuarioMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +19,9 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<Usuario> create(@RequestBody Usuario usuario){
-        Usuario user = usuarioService.salvar(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    public ResponseEntity<UsuarioResponseDto> create(@RequestBody UsuarioCreateDto createDTO){
+        Usuario user = usuarioService.salvar(UsuarioMapper.toUsuario(createDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(UsuarioMapper.toDto(user));
     }
 
     @GetMapping("/{id}")
