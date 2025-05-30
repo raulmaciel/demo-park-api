@@ -5,7 +5,7 @@ import lombok.*;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @ToString
-public class dto {
+public class UsuarioSenhaDto {
     private String senhaAtual;
     private String novaSenha;
     private String confirmaSenha;

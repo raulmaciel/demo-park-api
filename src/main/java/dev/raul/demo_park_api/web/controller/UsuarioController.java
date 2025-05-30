@@ -4,7 +4,7 @@ import dev.raul.demo_park_api.entity.Usuario;
 import dev.raul.demo_park_api.service.UsuarioService;
 import dev.raul.demo_park_api.web.dto.UsuarioCreateDto;
 import dev.raul.demo_park_api.web.dto.UsuarioResponseDto;
-import dev.raul.demo_park_api.web.dto.dto;
+import dev.raul.demo_park_api.web.dto.UsuarioSenhaDto;
 import dev.raul.demo_park_api.web.dto.mapper.UsuarioMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -32,15 +32,15 @@ public class UsuarioController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> updatePassword(@PathVariable Long id, @RequestBody dto dto){
+    public ResponseEntity<Void> updatePassword(@PathVariable Long id, @RequestBody UsuarioSenhaDto dto){
         Usuario user = usuarioService.editarSenha(id, dto.getSenhaAtual(), dto.getNovaSenha(), dto.getConfirmaSenha());
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> getAll(){
+    public ResponseEntity<List<UsuarioResponseDto>> getAll(){
         List<Usuario> usuarios = usuarioService.buscarTodos();
-        return ResponseEntity.ok(usuarios);
+        return ResponseEntity.ok(UsuarioMapper.toListDto(usuarios));
     }
 
 
