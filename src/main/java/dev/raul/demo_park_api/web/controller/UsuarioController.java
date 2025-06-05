@@ -81,6 +81,9 @@ public class UsuarioController {
                     , schema = @Schema(implementation = ErrorMessage.class))),
             @ApiResponse(responseCode = "400", description = "Senha não confere"
                     , content = @Content(mediaType = "application/json"
+                    , schema = @Schema(implementation = ErrorMessage.class))),
+            @ApiResponse(responseCode = "402", description = "Campos invalidos ou mal formatados"
+                    , content = @Content(mediaType = "application/json"
                     , schema = @Schema(implementation = ErrorMessage.class)))
     }
 
